@@ -72,11 +72,36 @@ namespace TestProject1
 
         internal static bool FoundElementAfterSorted(List<int> list, int value)
         {
-            list.Sort(); 
-
             
-            int index = list.BinarySearch(value);
-            return index >= 0; 
+            int n = list.Count;
+            bool swapped;
+
+            do
+            {
+                swapped = false;
+                for (int i = 0; i < n - 1; i++)
+                {
+                    if (list[i] > list[i + 1])
+                    {
+
+                        int temp = list[i];
+                        list[i] = list[i + 1];
+                        list[i + 1] = temp;
+                        swapped = true;
+                    }
+                }
+            } while (swapped); 
+
+           
+            foreach (int num in list)
+            {
+                if (num == value)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         
